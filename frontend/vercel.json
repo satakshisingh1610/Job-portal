@@ -1,0 +1,32 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "package.json",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "dist"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ],
+  "env": {
+    "VITE_API_URL": "@api_url",
+    "VITE_CLOUDINARY_CLOUD_NAME": "@cloudinary_cloud_name",
+    "VITE_CLOUDINARY_API_KEY": "@cloudinary_api_key",
+    "VITE_CLOUDINARY_API_SECRET": "@cloudinary_api_secret"
+  },
+  "build": {
+    "env": {
+      "VITE_API_URL": "@api_url",
+      "VITE_CLOUDINARY_CLOUD_NAME": "@cloudinary_cloud_name",
+      "VITE_CLOUDINARY_API_KEY": "@cloudinary_api_key",
+      "VITE_CLOUDINARY_API_SECRET": "@cloudinary_api_secret"
+    }
+  }
+}

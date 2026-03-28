@@ -1,0 +1,51 @@
+services:
+  # API Service
+  - type: web
+    name: job-portal-api
+    env: node
+    repo: https://github.com/your-username/job-portal
+    rootDir: backend
+    buildCommand: "npm install"
+    startCommand: "npm start"
+    healthCheckPath: /api/v1/user/profile
+    autoDeploy: false
+    
+    # Environment Variables
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 5000
+      - key: MONGODB_URI
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: FRONTEND_URL
+        value: https://your-frontend-url.vercel.app
+      - key: EMAIL_HOST
+        value: smtp.gmail.com
+      - key: EMAIL_PORT
+        value: 587
+      - key: EMAIL_USER
+        sync: false
+      - key: EMAIL_PASS
+        sync: false
+
+    # Instance Configuration
+    instanceType: free
+    plan: free
+    
+    # Scaling
+    scalingPolicy:
+      min: 1
+      max: 1
+      targetMemoryPercent: 60
+      targetCPUPercent: 60
+
+# MongoDB Atlas Integration (if using)
+databases:
+  - name: job-portal-db
+    plan: free
+    region: oregon
+    databaseName: jobportal
+    user: jobportal_user
